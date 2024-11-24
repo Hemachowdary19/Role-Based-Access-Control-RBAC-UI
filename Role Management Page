@@ -1,0 +1,41 @@
+// pages/Roles.js
+import { useState } from "react";
+
+const Roles = () => {
+  const [roles, setRoles] = useState([
+    { id: 1, name: "Admin", permissions: ["Read", "Write", "Delete"] },
+    { id: 2, name: "User", permissions: ["Read"] },
+  ]);
+
+  const addRole = () => {
+    const newRole = { id: roles.length + 1, name: "New Role", permissions: ["Read"] };
+    setRoles([...roles, newRole]);
+  };
+
+  return (
+    <div>
+      <h2>Role Management</h2>
+      <button onClick={addRole}>Add Role</button>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Role</th>
+            <th>Permissions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {roles.map(role => (
+            <tr key={role.id}>
+              <td>{role.id}</td>
+              <td>{role.name}</td>
+              <td>{role.permissions.join(", ")}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default Roles;
