@@ -1,0 +1,43 @@
+// pages/Users.js
+import { useState } from "react";
+
+const Users = () => {
+  const [users, setUsers] = useState([
+    { id: 1, name: "Alice", role: "Admin", status: "Active" },
+    { id: 2, name: "Bob", role: "User", status: "Inactive" },
+  ]);
+
+  const addUser = () => {
+    const newUser = { id: users.length + 1, name: "New User", role: "User", status: "Active" };
+    setUsers([...users, newUser]);
+  };
+
+  return (
+    <div>
+      <h2>User Management</h2>
+      <button onClick={addUser}>Add User</button>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map(user => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.name}</td>
+              <td>{user.role}</td>
+              <td>{user.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default Users;
